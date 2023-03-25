@@ -27,6 +27,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm ci
-      - run: console.log(Hello Word)
+      - run: console.log ('Hello Word')
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
