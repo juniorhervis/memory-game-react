@@ -15,13 +15,13 @@ jobs:
           node-version: 16
       - run: npm ci
 
-  teste-job:
+  teste:
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    deploy-jop:
+    deploy:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: echo Hello world
