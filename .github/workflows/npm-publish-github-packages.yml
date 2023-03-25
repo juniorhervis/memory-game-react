@@ -6,7 +6,7 @@ on:
    branches: [master]
 
 jobs:
-  build:
+  build-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,12 +16,13 @@ jobs:
       - run: npm ci
 
   teste-job:
-    needs: build
+    needs: build-job
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
   deploy-job:
-    - uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/setup-node@v3
     - run: echo Hello world
