@@ -15,13 +15,13 @@ jobs:
           node-version: 16
       - run: npm ci
 
-  publish-gpr:
+  teste-job:
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    steps:
+    deploy-jop:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm ci
