@@ -24,5 +24,4 @@ jobs:
     deploy-jop:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      - run: npm ci
       - run: echo Hello world
