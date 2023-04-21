@@ -1,9 +1,8 @@
-
 name: Projeto DevOps
 
 on:
   push:
-   branches: [master]
+    branches: [master]
 
 jobs:
   build-job:
@@ -21,10 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: AppThreat/sast-scan-action@master
-      
+
   deploy-job:
     needs: teste-job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: echo Hello World
+
+  ngrok-tunnel:
+    uses: vmactions/ngrok-tunnel@v0.0.1
+    with:
+      # tcp or http
+      protocol: http
+      port: 3000
