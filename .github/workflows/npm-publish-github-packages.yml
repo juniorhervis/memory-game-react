@@ -27,8 +27,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo Hello World
-      - uses: apogiatzis/ngrok-tunneling-action@a88c9e0ef5b0f1932a5715f210f2fde239fc2630
-        with:
-          timeout: 1h
-          port: 3000
+      - name: Ngrok Tunnel Action
+        # You may pin to the exact commit or the version.
+        # uses: LuisBoto/ngrok-tunnel-action@354358d72c11d68bbdf419e55c6864a8921b3c2e
+        uses: LuisBoto/ngrok-tunnel-action@v0.1.7.2
+        with:        
+          tunnel_type: http          
+          port: 3000          
+          save_url_to_filename: 'url.txt'          
           ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
