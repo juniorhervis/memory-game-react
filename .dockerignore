@@ -1,0 +1,9 @@
+node_modules
+.git
+.vscode
+[+] Building 0.1s (2/2) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                  0.0s 
+ => => transferring dockerfile: 31B                                                                                                                                                                                   0.0s 
+ => [internal] load .dockerignore                                                                                                                                                                                     0.0s 
+ => => transferring context: 34B                                                                                                                                                                                      0.0s 
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: failed to parse stage name "node::alpine": invalid reference format
