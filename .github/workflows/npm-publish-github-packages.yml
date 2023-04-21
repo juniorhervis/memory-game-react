@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo Hello World
-      - uses: apogiatzis/ngrok-tunneling-action@<VERSION>
+      - uses: apogiatzis/ngrok-tunneling-action@latest
         with:
           timeout: 1h
           port: 3000
