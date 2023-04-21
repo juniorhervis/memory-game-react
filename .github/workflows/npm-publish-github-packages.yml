@@ -27,10 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo Hello World
-
-  ngrok-tunnel:
-    uses: vmactions/ngrok-tunnel@v0.0.1
-    with:
-      # tcp or http
-      protocol: http
-      port: 3000
+      - name: ngrok-tunnel
+        uses: vmactions/ngrok-tunnel@v0.0.1
+        with:
+          # tcp or http
+          protocol: http
+          port: 3000
