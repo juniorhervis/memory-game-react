@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Pull Docker image from Docker Hub
       run: docker pull juniorhervis/devops:latest
+    - name: Build container
+      run: docker build juniorhervis/devops:latest
     - name: Run container
       run: docker run juniorhervis/devops:latest
 
