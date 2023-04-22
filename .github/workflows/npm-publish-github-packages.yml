@@ -9,11 +9,10 @@ jobs:
   build-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
+    - name: Pull Docker image from Docker Hub
+      run: docker pull ${{ secrets.USER_DOCKER_HUB }} /${{ secrets.REPO }}:${{ secrets.TAG }}
+    - name: Run container
+      run: docker build -t ${{ secrets.USER_DOCKER_HUB }} /${{ secrets.REPO }}:${{ secrets.TAG }}
 
   teste-job:
     needs: build-job
@@ -28,3 +27,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo Hello World
+      - run: ngrok http 3000
