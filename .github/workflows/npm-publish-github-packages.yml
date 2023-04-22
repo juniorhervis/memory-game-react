@@ -1,9 +1,8 @@
-
 name: Projeto DevOps
 
 on:
   push:
-   branches: [master]
+    branches: [master]
 
 jobs:
   build-job:
@@ -20,11 +19,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: AppThreat/sast-scan-action@master
-      
+
   deploy-job:
     needs: teste-job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo Hello World
-      - run: ngrok http 3000
+      - name: Ngrok Tunnel Action
+        uses: LuisBoto/ngrok-tunnel-action@v0.1.7.2
+        with:        
+          tunnel_type: http          
+          port: 3000          
+          save_url_to_filename: 'url.txt'          
+          ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
+
