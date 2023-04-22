@@ -11,7 +11,7 @@ jobs:
     - name: Pull Docker image from Docker Hub
       run: docker pull juniorhervis/devops:latest
     - name: Run container
-      run: docker build -t juniorhervis/devops:latest
+      run: docker run juniorhervis/devops:latest
 
   teste-job:
     needs: build-job
