@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Pull Docker image from Docker Hub
-      run: docker pull ${{ secrets.USER_DOCKER_HUB }} /${{ secrets.REPO }}:${{ secrets.TAG }}
+      run: docker pull [juniorhervis]/[devops]:[latest]
     - name: Run container
-      run: docker build -t ${{ secrets.USER_DOCKER_HUB }} /${{ secrets.REPO }}:${{ secrets.TAG }}
+      run: docker build -t [juniorhervis]/[devops]:[latest]
 
   teste-job:
     needs: build-job
