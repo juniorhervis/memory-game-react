@@ -38,13 +38,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Ngrok Tunnel Action
-        uses: LuisBoto/ngrok-tunnel-action@v0.1.7.2
-        with:        
-          tunnel_type: http          
-          port: 3000          
-          save_url_to_filename: 'url.txt'          
-          ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
+       - name: Install ngrok
+      run: |
+        curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip --output /tmp/ngrok.zip
+        unzip /tmp/ngrok.zip -d /usr/local/bin/
+    - name: Expose app with ngrok
+      run: |
+        ngrok http 3000
 
 
 
