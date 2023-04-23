@@ -4,9 +4,8 @@ on:
   push:
     branches: [master]
 jobs:
-  build:
+  build-job:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -15,7 +14,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: juniorhervis
-        password: dinossauromorto1
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
       run: docker build -t juniorhervis/devops:latest .
@@ -27,11 +26,26 @@ jobs:
         push: true
         tags: juniorhervis/devops:latest
 
-    - name: Expose image with ngrok
-      run: |
-        docker run -d --name ngrok --rm -p 4040:4040 juniorhervis/devops:latest ngrok http 3000
-        sleep 5 # Espera 5 segundos para o ngrok iniciar
-        curl --silent --show-error http://localhost:4040/api/tunnels | grep -o "http://.*ngrok.io"
+  teste-job:
+    needs: build-job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: AppThreat/sast-scan-action@master
+
+  deploy-job:
+    needs: teste-job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Ngrok Tunnel Action
+        uses: LuisBoto/ngrok-tunnel-action@v0.1.7.2
+        with:        
+          tunnel_type: http          
+          port: 3000          
+          save_url_to_filename: 'url.txt'          
+          ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
+
 
 
 # jobs:
