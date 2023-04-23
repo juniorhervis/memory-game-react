@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-       - name: Install ngrok
+      - name: Install ngrok
       run: |
         curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip --output /tmp/ngrok.zip
         unzip /tmp/ngrok.zip -d /usr/local/bin/
